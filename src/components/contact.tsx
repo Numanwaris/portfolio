@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./icons";
 import { Section } from "./section";
 import { Reveal } from "./reveal";
 import { profile } from "@/data/resume";
@@ -6,8 +7,8 @@ import { profile } from "@/data/resume";
 const links = [
   { href: `mailto:${profile.email}`, label: profile.email, icon: Mail },
   { href: `tel:${profile.phone}`, label: profile.phone, icon: Phone },
-  { href: profile.github, label: "github.com/Numanwaris", icon: Github },
-  { href: profile.linkedin, label: "linkedin.com/in/numan-waris-khan", icon: Linkedin },
+  { href: profile.github, label: "github.com/Numanwaris", icon: GithubIcon },
+  { href: profile.linkedin, label: "linkedin.com/in/numan-waris-khan", icon: LinkedinIcon },
 ];
 
 export function Contact() {
@@ -26,7 +27,7 @@ export function Contact() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm transition-colors hover:border-accent hover:text-accent"
+              className="card-hover flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm hover:text-accent"
             >
               <Icon size={16} />
               {label}

@@ -8,7 +8,7 @@ export function Projects() {
       <div className="grid gap-6 sm:grid-cols-2">
         {projects.map((project, i) => (
           <Reveal key={project.title} delay={i * 0.05}>
-            <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <div className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-6 sm:p-8">
               <h3 className="text-lg font-semibold">{project.title}</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {project.stack.map((tech) => (

@@ -1,17 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "@/data/resume";
+
+const highlightSkills = ["React.js", "Next.js", "NestJS", "React Native", "PostgreSQL"];
 
 export function Hero() {
   return (
-    <section id="top" className="relative flex min-h-screen flex-col justify-center px-6 pt-24">
+    <section id="top" className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-24">
+      <div
+        className="glow-orb animate-float h-72 w-72 bg-accent/40 -left-20 top-24 sm:h-96 sm:w-96"
+        aria-hidden
+      />
+      <div
+        className="glow-orb animate-float-slow h-72 w-72 bg-accent-2/30 right-0 bottom-10 sm:h-96 sm:w-96"
+        aria-hidden
+      />
+
       <div className="mx-auto w-full max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-2 text-lg font-semibold text-accent-foreground shadow-lg shadow-accent/30 sm:h-20 sm:w-20 sm:text-xl"
+        >
+          NK
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
           className="font-mono text-sm text-accent"
         >
           Hi, I&apos;m
@@ -21,7 +42,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl"
+          className="text-gradient mt-3 text-4xl font-semibold tracking-tight sm:text-6xl"
         >
           {profile.name}
         </motion.h1>
@@ -47,18 +68,34 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="mt-6 flex flex-wrap gap-2"
+        >
+          {highlightSkills.map((skill) => (
+            <span
+              key={skill}
+              className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+            >
+              {skill}
+            </span>
+          ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
           className="mt-8 flex flex-wrap items-center gap-4"
         >
           <a
             href="#contact"
-            className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
+            className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-6 py-2.5 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/25 transition-transform hover:-translate-y-0.5"
           >
             Get in touch
           </a>
           <a
             href="#projects"
-            className="rounded-full border border-border px-6 py-2.5 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="rounded-full border border-border px-6 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
           >
             View projects
           </a>
@@ -71,7 +108,7 @@ export function Hero() {
               aria-label="GitHub"
               className="transition-colors hover:text-foreground"
             >
-              <Github size={20} />
+              <GithubIcon size={20} />
             </a>
             <a
               href={profile.linkedin}
@@ -80,7 +117,7 @@ export function Hero() {
               aria-label="LinkedIn"
               className="transition-colors hover:text-foreground"
             >
-              <Linkedin size={20} />
+              <LinkedinIcon size={20} />
             </a>
             <a
               href={`mailto:${profile.email}`}

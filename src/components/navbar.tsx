@@ -15,28 +15,19 @@ const links = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors ${
-        scrolled ? "border-b border-border bg-background/80 backdrop-blur" : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm font-semibold tracking-tight">
-          Numan Waris Khan
+    <header className="fixed inset-x-0 top-4 z-50 px-4">
+      <nav className="mx-auto flex max-w-3xl items-center justify-between rounded-full border border-border bg-card/70 px-5 py-2.5 shadow-lg shadow-black/[0.03] backdrop-blur-xl dark:shadow-black/20">
+        <a href="#top" className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-2 text-xs text-accent-foreground">
+            NK
+          </span>
+          <span className="hidden sm:inline">Numan Waris</span>
         </a>
 
-        <div className="hidden items-center gap-8 sm:flex">
-          <ul className="flex items-center gap-6 text-sm text-muted">
+        <div className="hidden items-center gap-6 sm:flex">
+          <ul className="flex items-center gap-5 text-sm text-muted">
             {links.map((link) => (
               <li key={link.href}>
                 <a href={link.href} className="transition-colors hover:text-foreground">
@@ -45,10 +36,11 @@ export function Navbar() {
               </li>
             ))}
           </ul>
+          <div className="h-4 w-px bg-border" />
           <ThemeToggle />
         </div>
 
-        <div className="flex items-center gap-3 sm:hidden">
+        <div className="flex items-center gap-2 sm:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -62,8 +54,8 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-background sm:hidden">
-          <ul className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-4 text-sm text-muted">
+        <div className="mx-auto mt-2 max-w-3xl rounded-2xl border border-border bg-card/95 shadow-lg backdrop-blur-xl sm:hidden">
+          <ul className="flex flex-col gap-1 px-5 py-4 text-sm text-muted">
             {links.map((link) => (
               <li key={link.href}>
                 <a

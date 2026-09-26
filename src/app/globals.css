@@ -7,19 +7,23 @@
   --card: #ffffff;
   --border: #e4e4e7;
   --accent: #4f46e5;
+  --accent-2: #ec4899;
   --accent-foreground: #ffffff;
   --ring: #4f46e5;
+  --grid-dot: rgba(24, 24, 27, 0.07);
 }
 
 .dark {
-  --background: #0a0a0c;
+  --background: #08080a;
   --foreground: #f4f4f5;
   --muted: #a1a1aa;
   --card: #131316;
   --border: #27272a;
   --accent: #818cf8;
+  --accent-2: #f472b6;
   --accent-foreground: #0a0a0c;
   --ring: #818cf8;
+  --grid-dot: rgba(244, 244, 245, 0.08);
 }
 
 @theme inline {
@@ -29,6 +33,7 @@
   --color-card: var(--card);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-accent-foreground: var(--accent-foreground);
   --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
@@ -46,9 +51,57 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  background-image: radial-gradient(circle at 1px 1px, var(--grid-dot) 1.5px, transparent 0);
+  background-size: 28px 28px;
 }
 
 ::selection {
   background: var(--accent);
   color: var(--accent-foreground);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--foreground) 30%, var(--accent) 70%, var(--accent-2) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-24px) translateX(12px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 11s ease-in-out infinite;
+}
+
+.card-hover {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -20px color-mix(in srgb, var(--accent) 35%, transparent);
 }

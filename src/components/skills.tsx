@@ -8,7 +8,7 @@ export function Skills() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, i) => (
           <Reveal key={group.label} delay={i * 0.05}>
-            <div className="h-full rounded-2xl border border-border bg-card p-6">
+            <div className="card-hover h-full rounded-2xl border border-border bg-card p-6">
               <h3 className="text-sm font-semibold text-accent">{group.label}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
