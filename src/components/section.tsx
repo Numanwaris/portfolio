@@ -2,24 +2,28 @@ import type { ReactNode } from "react";
 
 export function Section({
   id,
-  eyebrow,
   title,
+  accentWord,
+  subtitle,
   children,
 }: {
   id: string;
-  eyebrow: string;
   title: string;
+  accentWord: string;
+  subtitle?: string;
   children: ReactNode;
 }) {
   return (
     <section id={id} className="scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-gradient-to-r from-accent to-accent-2" />
-          <p className="font-mono text-sm font-medium tracking-wide text-accent">{eyebrow}</p>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            {title} <span className="text-accent">{accentWord}</span>
+          </h2>
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-accent" />
+          {subtitle ? <p className="mx-auto mt-4 max-w-xl text-muted">{subtitle}</p> : null}
         </div>
-        <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
-        <div className="mt-10">{children}</div>
+        <div className="mt-12">{children}</div>
       </div>
     </section>
   );

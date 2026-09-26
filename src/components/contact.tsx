@@ -13,12 +13,22 @@ const links = [
 
 export function Contact() {
   return (
-    <Section id="contact" eyebrow="Contact" title="Let's work together">
+    <Section id="contact" title="Get In" accentWord="Touch">
       <Reveal>
-        <p className="max-w-xl text-base leading-relaxed text-muted">
-          I&apos;m open to full-stack roles and freelance projects across web, mobile, and
-          desktop. Reach out and I&apos;ll get back to you soon.
-        </p>
+        <div className="rounded-3xl border border-border bg-card p-8 text-center sm:p-12">
+          <h3 className="text-2xl font-bold">Let&apos;s Create Something Amazing Together</h3>
+          <p className="mx-auto mt-4 max-w-xl text-muted">
+            I&apos;m always excited to work on new projects and collaborate with passionate
+            people. Whether you have a specific project in mind or just want to chat about
+            technology, I&apos;d love to hear from you.
+          </p>
+          <a
+            href={`mailto:${profile.email}`}
+            className="mt-8 inline-block rounded-full bg-gradient-to-r from-accent to-accent-soft px-8 py-3 text-sm font-semibold text-accent-foreground shadow-lg shadow-accent/25 transition-transform hover:-translate-y-0.5"
+          >
+            Get In Touch
+          </a>
+        </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {links.map(({ href, label, icon: Icon }) => (

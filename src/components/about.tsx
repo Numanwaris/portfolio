@@ -10,7 +10,7 @@ const stats = [
 
 export function About() {
   return (
-    <Section id="about" eyebrow="About" title="Who I am">
+    <Section id="about" title="Who" accentWord="I Am">
       <div className="grid gap-10 sm:grid-cols-3">
         <Reveal className="sm:col-span-2">
           <p className="text-base leading-relaxed text-muted sm:text-lg">

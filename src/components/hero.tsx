@@ -16,7 +16,7 @@ export function Hero() {
         aria-hidden
       />
       <div
-        className="glow-orb animate-float-slow h-72 w-72 bg-accent-2/20 right-0 bottom-10 sm:h-96 sm:w-96"
+        className="glow-orb animate-float-slow h-72 w-72 bg-accent-soft/20 right-0 bottom-10 sm:h-96 sm:w-96"
         aria-hidden
       />
 
@@ -35,9 +35,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-gradient mt-3 text-4xl font-semibold tracking-tight sm:text-6xl"
+            className="mt-3 text-4xl font-bold tracking-tight sm:text-6xl"
           >
-            {profile.name}
+            {profile.name.split(" ").slice(0, -1).join(" ")}{" "}
+            <span className="text-accent">{profile.name.split(" ").slice(-1)}</span>
           </motion.h1>
 
           <motion.p
@@ -82,7 +83,7 @@ export function Hero() {
           >
             <a
               href="#contact"
-              className="rounded-full bg-gradient-to-r from-accent to-accent-2 px-6 py-2.5 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/25 transition-transform hover:-translate-y-0.5"
+              className="rounded-full bg-gradient-to-r from-accent to-accent-soft px-6 py-2.5 text-sm font-medium text-accent-foreground shadow-lg shadow-accent/25 transition-transform hover:-translate-y-0.5"
             >
               Get in touch
             </a>
@@ -130,7 +131,7 @@ export function Hero() {
           className="relative mx-auto w-56 sm:w-72 lg:w-full lg:max-w-sm"
         >
           <div
-            className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-accent to-accent-2 opacity-30 blur-2xl"
+            className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-accent to-accent-soft opacity-30 blur-2xl"
             aria-hidden
           />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-border bg-card p-2.5 shadow-2xl sm:p-3">

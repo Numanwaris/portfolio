@@ -1,53 +1,80 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { profile } from "@/data/resume";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#education", label: "Education" },
-  { href: "#contact", label: "Contact" },
+  { href: "#top", label: "Home", id: "top" },
+  { href: "#about", label: "About", id: "about" },
+  { href: "#experience", label: "Experience", id: "experience" },
+  { href: "#education", label: "Education", id: "education" },
+  { href: "#projects", label: "Projects", id: "projects" },
+  { href: "#skills", label: "Skills", id: "skills" },
+  { href: "#contact", label: "Contact", id: "contact" },
 ];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState("top");
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.getElementById(link.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: 0 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
-      <nav className="mx-auto flex max-w-3xl items-center justify-between rounded-full border border-border bg-card/70 px-5 py-2.5 shadow-lg shadow-black/[0.03] backdrop-blur-xl dark:shadow-black/20">
-        <a href="#top" className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
-          <span className="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-accent/40">
-            <Image src="/photo.jpg" alt="" fill sizes="28px" className="object-cover" />
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-card/85 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <a href="#top" className="flex items-center gap-3">
+          <span className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-accent/40">
+            <Image src="/photo.jpg" alt="" fill sizes="40px" className="object-cover" />
           </span>
-          <span className="hidden sm:inline">Numan Waris</span>
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="text-sm font-semibold">{profile.name}</span>
+            <span className="text-xs text-muted">{profile.shortTagline}</span>
+          </span>
         </a>
 
-        <div className="hidden items-center gap-6 sm:flex">
-          <ul className="flex items-center gap-5 text-sm text-muted">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className="transition-colors hover:text-foreground">
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <div className="h-4 w-px bg-border" />
-          <ThemeToggle />
+        <div className="hidden items-center gap-1 lg:flex">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
+                activeId === link.id
+                  ? "bg-accent text-accent-foreground"
+                  : "text-muted hover:text-foreground"
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
 
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           <button
             type="button"
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border lg:hidden"
           >
             {open ? <X size={16} /> : <Menu size={16} />}
           </button>
@@ -55,14 +82,16 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="mx-auto mt-2 max-w-3xl rounded-2xl border border-border bg-card/95 shadow-lg backdrop-blur-xl sm:hidden">
-          <ul className="flex flex-col gap-1 px-5 py-4 text-sm text-muted">
+        <div className="border-t border-border bg-card lg:hidden">
+          <ul className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4 text-sm">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block py-2 transition-colors hover:text-foreground"
+                  className={`block rounded-lg px-3 py-2 transition-colors ${
+                    activeId === link.id ? "bg-accent text-accent-foreground" : "text-muted hover:text-foreground"
+                  }`}
                 >
                   {link.label}
                 </a>

@@ -15,10 +15,10 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <About />
-        <Skills />
         <Experience />
-        <Projects />
         <Education />
+        <Projects />
+        <Skills />
         <Contact />
       </main>
       <Footer />
