@@ -5,7 +5,7 @@ import { ArrowDown, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "@/data/resume";
 
-const highlightSkills = ["React.js", "Next.js", "NestJS", "React Native", "PostgreSQL"];
+const highlightSkills = ["React.js", "Next.js", "Angular", "NestJS", "React Native", "PostgreSQL"];
 
 export function Hero() {
   return (
