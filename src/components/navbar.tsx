@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -20,8 +21,8 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="mx-auto flex max-w-3xl items-center justify-between rounded-full border border-border bg-card/70 px-5 py-2.5 shadow-lg shadow-black/[0.03] backdrop-blur-xl dark:shadow-black/20">
         <a href="#top" className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-2 text-xs text-accent-foreground">
-            NK
+          <span className="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-accent/40">
+            <Image src="/photo.jpg" alt="" fill sizes="28px" className="object-cover" />
           </span>
           <span className="hidden sm:inline">Numan Waris</span>
         </a>
